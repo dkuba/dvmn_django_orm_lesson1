@@ -27,8 +27,14 @@ class Visit(models.Model):
             leaved="leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
 
+    def get_visit_info(self, max_seconds):
+        visit_data = {"who_entered": self.passcard.owner_name, "entered_at": self.entered_at,
+                      "duration": self.visit_duration, "is_strange": self.is_visit_too_long(max_seconds)}
+
+        return visit_data
+
     @property
-    def data_dict(self):
+    def visit_duration(self):
         if not self.leaved_at:
             leaved_time = django.utils.timezone.localtime()
         else:
@@ -36,13 +42,10 @@ class Visit(models.Model):
 
         time_delta = leaved_time - self.entered_at
 
-        tmp_vitis_data = {
-            "who_entered": self.passcard.owner_name,
-            "entered_at": self.entered_at,
-            "duration": time_delta,
-            "is_strange": False}
+        return time_delta
 
-        if time_delta.total_seconds() > 3600:
-            tmp_vitis_data["is_strange"] = True
-
-        return tmp_vitis_data
+    def is_visit_too_long(self, max_seconds):
+        if self.visit_duration.total_seconds() > max_seconds:
+            return True
+        else:
+            return False

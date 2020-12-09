@@ -10,7 +10,7 @@ def passcard_info_view(request, passcode):
     visits = Visit.objects.filter(passcard=passcard)
     this_passcard_visits = []
     for visit in visits:
-        this_passcard_visits.append(visit.data_dict)
+        this_passcard_visits.append(visit.get_visit_info(3600))
 
     context = {
         "passcard": passcard,
