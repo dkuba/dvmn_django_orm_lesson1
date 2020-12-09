@@ -27,7 +27,7 @@ class Visit(models.Model):
             leaved="leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
 
-    def get_visit_info(self, max_seconds):
+    def get_visit_info(self, max_seconds=3600):
         return {"who_entered": self.passcard.owner_name, "entered_at": self.entered_at,
                 "duration": self.get_visit_duration(), "is_strange": self.is_visit_too_long(max_seconds)}
 
