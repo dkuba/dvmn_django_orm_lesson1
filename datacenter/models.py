@@ -42,5 +42,5 @@ class Visit(models.Model):
         return time_delta
 
     def is_visit_too_long(self, max_seconds):
-        return self.get_visit_duration.total_seconds() > max_seconds
+        return self.get_visit_duration().total_seconds() > max_seconds
 
