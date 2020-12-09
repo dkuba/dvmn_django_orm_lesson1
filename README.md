@@ -8,7 +8,7 @@
 
 >pip install -r requirements.txt
 
-###Использование
+### Использование
     >>> python3 main.py
 сайт будет доступен на http://0.0.0.0:8000/
 
