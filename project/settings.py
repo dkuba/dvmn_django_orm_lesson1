@@ -1,20 +1,13 @@
 import os
 from dotenv import load_dotenv
 from environs import Env
+import dj_database_url
+
 env = Env()
-env.read_env()
 load_dotenv()
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('HOST'),
-        'PORT': '5434',
-        'NAME': os.getenv('USER_NAME'),
-        'USER': 'guard',
-        'PASSWORD': os.getenv('PASSWORD')
-    }
-}
+DATABASES = {'default': dj_database_url.config()}
+
 
 INSTALLED_APPS = ['datacenter']
 

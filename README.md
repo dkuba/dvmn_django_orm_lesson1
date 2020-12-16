@@ -10,6 +10,17 @@ Python3 должен быть уже установлен.
 pip install -r requirements.txt
 ```
 
+### Как настроить
+
+Приложение использует переменные окружения для настройки. Настройка подключения к базе данных
+```buildoutcfg
+DATABASE_URL='postgres://USER:PASSWORD@HOST:PORT/NAME'
+```
+Секретный ключ приложения
+```buildoutcfg
+SECRET_KEY = 'REPLACE_ME'
+```
+
 ### Как запустить
 
 ```
